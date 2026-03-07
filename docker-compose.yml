@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: drishyamitra-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - uploads_data:/app/uploads
+    environment:
+      - FLASK_DEBUG=true
+      - DATABASE_URL=sqlite:///drishyamitra.db
+    env_file:
+      - ./backend/.env
+    networks:
+      - drishyamitra-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: drishyamitra-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000/api
+    depends_on:
+      - backend
+    networks:
+      - drishyamitra-net
+
+  # SQLite is file-based and lives inside the backend container.
+  # This service is a placeholder for future migration to PostgreSQL/MySQL.
+  database:
+    image: alpine:3.19
+    container_name: drishyamitra-database
+    command: sh -c "echo 'SQLite in use — no external DB needed' && sleep infinity"
+    networks:
+      - drishyamitra-net
+
+volumes:
+  uploads_data:
+
+networks:
+  drishyamitra-net:
+    driver: bridge

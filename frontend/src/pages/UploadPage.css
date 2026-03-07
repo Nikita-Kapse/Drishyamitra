@@ -1,0 +1,104 @@
+.upload-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.upload-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.upload-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e0e0ff;
+  margin-bottom: 0.25rem;
+}
+
+.upload-subtitle {
+  color: #a0a0c0;
+  margin-bottom: 2rem;
+}
+
+.drop-zone {
+  display: block;
+  border: 2px dashed rgba(120, 130, 255, 0.5);
+  border-radius: 16px;
+  cursor: pointer;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+
+.drop-zone:hover {
+  border-color: #7882ff;
+  background: rgba(120, 130, 255, 0.05);
+}
+
+.drop-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a0a0c0;
+}
+
+.drop-icon { font-size: 2.5rem; }
+
+.preview-image {
+  max-height: 220px;
+  max-width: 100%;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.file-name {
+  color: #c0c0e0;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.upload-btn {
+  background: linear-gradient(135deg, #7882ff, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.85rem 2.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  margin-top: 0.5rem;
+}
+
+.upload-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(120, 130, 255, 0.4);
+}
+
+.upload-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.upload-message {
+  margin-top: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.upload-message.success { background: rgba(80, 200, 120, 0.15); color: #50c878; }
+.upload-message.error   { background: rgba(255, 80, 80, 0.15);  color: #ff6b6b; }

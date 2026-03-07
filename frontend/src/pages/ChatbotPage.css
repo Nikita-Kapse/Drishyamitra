@@ -1,0 +1,98 @@
+.chatbot-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.chatbot-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #e0e0ff;
+  margin-bottom: 1.5rem;
+}
+
+.chat-window {
+  width: 100%;
+  max-width: 700px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 1.5rem;
+  overflow-y: auto;
+  min-height: 400px;
+  max-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.chat-bubble {
+  max-width: 75%;
+  padding: 0.75rem 1.1rem;
+  border-radius: 16px;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #7882ff, #a855f7);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.chat-bubble.assistant {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d0d0f0;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-bubble.typing { opacity: 0.6; font-style: italic; }
+
+.chat-input-row {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.chat-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  color: #e0e0ff;
+  padding: 0.8rem 1.1rem;
+  font-size: 0.95rem;
+  resize: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: #7882ff;
+}
+
+.chat-input::placeholder { color: #6060a0; }
+
+.chat-send {
+  background: linear-gradient(135deg, #7882ff, #a855f7);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.chat-send:hover:not(:disabled) { transform: scale(1.05); }
+.chat-send:disabled { opacity: 0.6; cursor: not-allowed; }
