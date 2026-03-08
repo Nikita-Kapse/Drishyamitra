@@ -105,3 +105,104 @@
   color: #6060a0;
   font-size: 0.75rem;
 }
+
+/* ── Person folder list ── */
+.persons-list {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.person-folder {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.person-folder:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.4);
+}
+
+.person-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.15s;
+}
+
+.person-header:hover {
+  background: rgba(120, 130, 255, 0.08);
+}
+
+.folder-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.person-name {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #dde0ff;
+  flex: 1;
+}
+
+.photo-count-badge {
+  font-size: 0.78rem;
+  color: #7882ff;
+  background: rgba(120, 130, 255, 0.15);
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.rename-btn {
+  background: rgba(120, 130, 255, 0.18);
+  border: 1px solid rgba(120, 130, 255, 0.35);
+  color: #a8b0ff;
+  font-size: 0.8rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.rename-btn:hover {
+  background: rgba(120, 130, 255, 0.35);
+  color: #fff;
+}
+
+.rename-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid #7882ff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.3rem 0.7rem;
+  outline: none;
+  min-width: 0;
+}
+
+.rename-input:focus {
+  box-shadow: 0 0 0 2px rgba(120, 130, 255, 0.4);
+}
+
+/* ── Expanded photo area ── */
+.person-photos {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.loading-photos {
+  color: #7882ff;
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}

@@ -31,8 +31,9 @@
   margin-bottom: 1.25rem;
 }
 
+/* ── Chat bubbles ────────────────────────────────────────────────── */
 .chat-bubble {
-  max-width: 75%;
+  max-width: 80%;
   padding: 0.75rem 1.1rem;
   border-radius: 16px;
   line-height: 1.5;
@@ -53,8 +54,61 @@
   border-bottom-left-radius: 4px;
 }
 
-.chat-bubble.typing { opacity: 0.6; font-style: italic; }
+/* Preserve newlines in assistant messages */
+.chat-text { white-space: pre-line; margin: 0; }
 
+/* ── Typing animation ────────────────────────────────────────────── */
+.chat-bubble.typing {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #a0a0d0;
+  animation: blink 1.2s infinite ease-in-out;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.85); }
+  40%           { opacity: 1;   transform: scale(1.1); }
+}
+
+/* ── Photo thumbnails grid ───────────────────────────────────────── */
+.chat-photos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0.75rem;
+}
+
+.chat-photo-link {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid rgba(120, 130, 255, 0.4);
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.chat-photo-link:hover {
+  border-color: #a855f7;
+  transform: scale(1.04);
+}
+
+.chat-photo-thumb {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Input row ──────────────────────────────────────────────────── */
 .chat-input-row {
   display: flex;
   gap: 0.75rem;
@@ -91,7 +145,7 @@
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s;
+  transition: transform 0.15s, opacity 0.15s;
 }
 
 .chat-send:hover:not(:disabled) { transform: scale(1.05); }
