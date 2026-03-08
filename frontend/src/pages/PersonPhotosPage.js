@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchPersonPhotos } from "../services/photoService";
 import "./PeoplePage.css";
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 export default function PersonPhotosPage() {
   const { id } = useParams();
