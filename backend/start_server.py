@@ -91,5 +91,6 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    print("[OK] Drishyamitra backend running -> http://localhost:5000")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    print(f"[OK] Drishyamitra backend running on port {port}")
+    app.run(host="0.0.0.0", port=port)
