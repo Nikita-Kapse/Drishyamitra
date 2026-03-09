@@ -1,8 +1,17 @@
 import json
 import logging
 import numpy as np
+import cv2
+from deepface import DeepFace
 
 logger = logging.getLogger(__name__)
+
+# Pre-load the model once at worker startup to avoid reloading on every request
+try:
+    DeepFace.build_model("Facenet512")
+    print("[OK] Facenet512 model preloaded.")
+except Exception as exc:
+    print(f"[WARN] Facenet512 preload failed (will load on first request): {exc}")
 
 
 def detect_faces(image_path: str) -> list:
@@ -13,8 +22,6 @@ def detect_faces(image_path: str) -> list:
     Returns [] if no faces are found or if DeepFace raises an error.
     """
     try:
-        from deepface import DeepFace
-        import cv2
 
         img = cv2.imread(image_path)
         if img is None:
@@ -65,8 +72,6 @@ def generate_embedding(face_img) -> list | None:
     Returns the embedding as a Python list, or None on failure.
     """
     try:
-        from deepface import DeepFace
-        import cv2
 
         # Resize the face exactly to the size FaceNet expects, and log it
         face_img = cv2.resize(face_img, (160, 160))
