@@ -19,13 +19,21 @@ UPLOAD_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "upload
 
 def _run_migrations(app):
     """
-    Safe, idempotent schema migrations for SQLite.
+    Safe, idempotent schema migrations.
     SQLAlchemy's create_all() only creates missing *tables* — it never alters
     existing ones.  We handle new columns here with plain SQL so the server
     starts cleanly even against an older database file.
     """
     with app.app_context():
         from app.database import db
+
+        db_url = app.config.get("SQLALCHEMY_DATABASE_URI", "")
+
+        # Only run PRAGMA-based migration when using SQLite
+        if not db_url.startswith("sqlite"):
+            print("[OK] Skipping SQLite migrations (PostgreSQL detected)")
+            return
+
         conn = db.engine.raw_connection()
         try:
             cur = conn.cursor()
@@ -34,7 +42,7 @@ def _run_migrations(app):
             col_names = [row[1] for row in cur.fetchall()]
             if "person_id" not in col_names:
                 cur.execute(
-                    "ALTER TABLE photos ADD COLUMN person_id INTEGER REFERENCES persons(id)"
+                    "ALTER TABLE photos ADD COLUMN person_id INTEGER"
                 )
                 conn.commit()
                 print("[OK] Migration: added person_id column to photos table.")
