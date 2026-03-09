@@ -1,3 +1,4 @@
+import os
 from flask import Blueprint, jsonify, request
 from models.person_model import Person
 from models.photo_model import Photo
@@ -5,7 +6,7 @@ from app.database import db
 
 person_bp = Blueprint("persons", __name__)
 
-API_BASE = "http://localhost:5000/api"
+API_BASE = os.environ.get("API_BASE_URL", "").rstrip("/")
 
 
 @person_bp.route("/persons", methods=["GET"])

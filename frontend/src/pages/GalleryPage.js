@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import "./GalleryPage.css";
 
-const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+const API_BASE = process.env.REACT_APP_API_URL || "";
 
 export default function GalleryPage() {
   const [persons, setPersons] = useState([]);

@@ -1,4 +1,5 @@
 import logging
+import os
 from datetime import date, datetime, timedelta, timezone
 from flask import Blueprint, request, jsonify
 from services.chatbot_service import parse_query
@@ -7,7 +8,7 @@ from services.email_service import send_photos
 chat_bp = Blueprint("chat", __name__)
 logger = logging.getLogger(__name__)
 
-API_BASE = "http://localhost:5000/api"
+API_BASE = os.environ.get("API_BASE_URL", "").rstrip("/")
 
 
 @chat_bp.route("/chat", methods=["POST"])
