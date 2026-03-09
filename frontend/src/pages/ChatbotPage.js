@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./ChatbotPage.css";
 
-const API = process.env.REACT_APP_API_URL || "";
+const API = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 export default function ChatbotPage() {
   const [messages, setMessages] = useState([
